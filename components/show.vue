@@ -8,21 +8,16 @@
         {{ post.body }}
       </p>
     </v-card-text>
-    <v-card-actions class="card-actions">
-      <template v-if="isAdmin">
+    <div class="card-actions">
         <v-btn
-          :to="`admin/post/${post.id}/edit`"
+          :to="`admin/${post.id}/edit`"
           text
           color="deep-purple accent-4"
         >
           Edit
         </v-btn>
-        <!-- <v-btn
-          text
-          color="error"
-        >
-          Delete
-        </v-btn> -->
+        
+    </div>
         <app-modal
           button-label="Delete"
           button-color="error"
@@ -31,7 +26,7 @@
           <template slot-scope="{ close }">
             <v-card>
               <v-card-title class="headline"> Are you sure? </v-card-title>
-              <v-card-actions>
+              <div>
                 <v-spacer></v-spacer>
                 <v-btn
                   color="error"
@@ -49,27 +44,22 @@
                 >
                   CLOSE
                 </v-btn>
-              </v-card-actions>
+              </div>
             </v-card>
           </template>
         </app-modal>
-      </template>
-      <template v-else>
-        <v-btn :to="`/post/${post.id}`" text color="deep-purple accent-4">
-          <span @click="updateSelectedPost(post)"> Read More </span>
-        </v-btn>
-      </template>
-    </v-card-actions>
+
   </v-card>
 </template>
 
 <script>
-import AppModal from "@/components/shared/app-modal";
+import AppModal from "@/components/app-modal";
+
 export default {
-  components: {
-    AppModal,
+  components:{
+    AppModal
   },
-  props: {
+props: {
     post: {
       type: Object,
       required: true,

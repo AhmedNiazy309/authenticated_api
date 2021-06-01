@@ -41,11 +41,11 @@ export default {
       rules: {
         title: [
           v => !!v || "Title is required",
-          v => v.length >= 15 || "Title must be at least 15 characters"
+          v => v.length >= 1 || "Title must be at least 15 characters"
         ],
         body: [
           v => !!v || "Body is required",
-          v => v.length >= 100 || "Body must be at least 100 characters"
+          v => v.length >= 2 || "Body must be at least 100 characters"
         ]
       }
     };
@@ -67,7 +67,7 @@ export default {
       this.$store
         .dispatch(action.name, action.payload)
         .then(() => {
-          this.$router.push("/admin");
+          this.$router.push("/");
         })
         .finally(() => {
           this.addPostLoading = false;
